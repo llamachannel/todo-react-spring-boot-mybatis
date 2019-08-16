@@ -1,5 +1,6 @@
 package party.afraidto;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,5 +15,9 @@ public class TodoItemDao {
 
     public TodoItem getItem(int id) {
         return mapper.getItem(id);
+    }
+
+    public List<TodoItem> getItems() {
+        return mapper.getItems();
     }
 }

@@ -1,11 +1,15 @@
 package party.afraidto;
 
+import java.util.List;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface TodoItemMapper {
     @Insert("insert into todo (text, isCompleted) values (#{text}, #{isCompleted})")
     public int insertItem(TodoItem todo);
+
+    @Select("SELECT id, text, isCompleted FROM todo")
+    List<TodoItem> getItems();
 
     @Select("SELECT id, text, isCompleted FROM todo WHERE id = #{id}")
     @Results(value = {
