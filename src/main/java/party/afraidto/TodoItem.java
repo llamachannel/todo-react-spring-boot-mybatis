@@ -15,6 +15,10 @@ public class TodoItem {
         return this.text;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public boolean getIsCompleted() {
         return this.isCompleted;
     }
