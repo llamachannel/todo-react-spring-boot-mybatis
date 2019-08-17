@@ -52,18 +52,34 @@ class App extends React.Component {
   }
 
   handleAddClick() {
-    // TODO: POST new item to rest API, get new id back?
-    const newId = 1;
-    alert("you clicked add text, and textbar = '" + this.state.newItemText + "'");
-    const newItem = {
-      id: newId,
+    let newItem = {
       text: this.state.newItemText,
       isCompleted: false
     };
-    this.setState(state => ({
-      newItemText: '',
-      items: this.state.items.concat(newItem)
-    }));
+    // TODO: POST new item to rest API, get new id back?
+    console.log("init newItem = ");
+    console.log(newItem);
+    fetch('/api/todo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newItem),
+    })
+    .then(function(res) {
+      console.log(res);
+      console.log("trying to PRINT JSON!!!!!!!!!!!!!!!");
+      return res.text();
+    })
+    .then(function(newId) {
+      console.log("then2, newItem = ");
+      console.log(newId);
+      newItem.id = newId;
+      this.setState(state => ({
+        newItemText: '',
+        items: this.state.items.concat(newItem)
+      }));
+    });
   }
 
   render() {
@@ -93,8 +109,6 @@ class NewItemForm extends React.Component {
 
 class TodoList extends React.Component {
   render() {
-    console.log("TodoList, this.props = ");
-    console.log(this.props);
     const items = this.props.items.map(item =>
       <TodoItem key={item.id} item={item}/>
     );

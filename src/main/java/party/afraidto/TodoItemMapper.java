@@ -5,7 +5,8 @@ import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface TodoItemMapper {
-    @Insert("insert into todo (text, isCompleted) values (#{text}, #{isCompleted})")
+    @Insert("insert into todo (id, text, isCompleted) values (null, #{text}, #{isCompleted})")
+    @Options(useGeneratedKeys=true, keyProperty="id")
     public int insertItem(TodoItem todo);
 
     @Select("SELECT id, text, isCompleted FROM todo")
