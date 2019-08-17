@@ -50,11 +50,21 @@ class App extends React.Component {
     return (
       <div>
         <h1>todo</h1>
-        <input type="text"/>
-        <button onClick={this.handleAddClick}>add</button>
+        <NewItemForm handleAddClick={this.handleAddClick}/>
         <TodoList items={this.state.items}/>
       </div>
     )
+  }
+}
+
+class NewItemForm extends React.Component {
+  render() {
+    return (
+      <div id="newItemForm">
+        <input type="text"/>
+        <button onClick={() => this.props.handleAddClick()}>add</button>
+      </div>
+    );
   }
 }
 
