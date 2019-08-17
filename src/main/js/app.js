@@ -7,13 +7,18 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleNewItemTextChange = this.handleNewItemTextChange.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
+
     this.state = {
       error: null,
       isLoaded: false,
+      // newItemText makes NewItemForm a "controlled component"
+      newItemText: '',
       items: [
-        { "id": 1, "text": "a", isCompleted: false},
-        { "id": 2, "text": "bee", isCompleted: false},
-        { "id": 3, "text": "sea", isCompleted: false}
+        { id: 1, text: "a", isCompleted: false},
+        { id: 2, text: "bee", isCompleted: false},
+        { id: 3, text: "sea", isCompleted: false}
       ]
     };
   }
@@ -42,15 +47,24 @@ class App extends React.Component {
       )
   }
 
+  handleNewItemTextChange(ev) {
+    this.setState({newItemText: ev.target.value});
+  }
+
   handleAddClick() {
-    alert("you clicked add");
+    // TODO: just display textbar text
+    // TODO: create new TodoItem with textbar text as thing todo, set Iscompleted =false
+    alert("you clicked add text, and textbar = '" + this.state.newItemText + "'");
   }
 
   render() {
     return (
       <div>
         <h1>todo</h1>
-        <NewItemForm handleAddClick={this.handleAddClick}/>
+        <NewItemForm
+          handleAddClick={this.handleAddClick}
+          newItemText={this.state.newItemText}
+          handleNewItemTextChange={this.handleNewItemTextChange}/>
         <TodoList items={this.state.items}/>
       </div>
     )
@@ -61,7 +75,7 @@ class NewItemForm extends React.Component {
   render() {
     return (
       <div id="newItemForm">
-        <input type="text"/>
+        <input type="text" value={this.props.newItemText} onChange={this.props.handleNewItemTextChange}/>
         <button onClick={() => this.props.handleAddClick()}>add</button>
       </div>
     );
