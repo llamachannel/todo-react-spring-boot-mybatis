@@ -23,6 +23,8 @@ class App extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
+          console.log("cDM, result = ");
+          console.log(result);
           this.setState({
             isLoaded: true,
             items: result,
@@ -53,6 +55,8 @@ class App extends React.Component {
 
 class TodoList extends React.Component {
   render() {
+    console.log("TodoList, this.props = ");
+    console.log(this.props);
     const items = this.props.items.map(item =>
       <TodoItem key={item.id} item={item}/>
     );
