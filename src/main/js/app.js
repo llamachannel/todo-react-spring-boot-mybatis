@@ -14,6 +14,7 @@ class App extends React.Component {
     };
   }
 
+  /*
   componentDidMount() {
     fetch("/api/todo")
       .then(res => res.json())
@@ -35,10 +36,12 @@ class App extends React.Component {
         }
       )
   }
+  */
 
   render() {
     return (
       <div>
+        <h1>todo</h1>
         <input type="text"/>
         <TodoList items={this.state.items}/>
       </div>
