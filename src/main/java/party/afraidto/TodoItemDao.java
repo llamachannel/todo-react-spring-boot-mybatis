@@ -48,8 +48,9 @@ public class TodoItemDao {
     return this.sqlSession.selectOne("getItemById", id);
   }
 
-  public void insertItem(TodoItem item) {
+  public long insertItem(TodoItem item) {
       this.sqlSession.insert("insertItem", item);
+      return item.getId();
   }
 
 }

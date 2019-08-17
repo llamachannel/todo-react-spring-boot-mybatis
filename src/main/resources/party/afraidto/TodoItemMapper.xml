@@ -9,7 +9,8 @@
     <select id="getItemById" resultType="TodoItem">
         SELECT id, text, isCompleted FROM todo WHERE id = #{id}
     </select>
-    <insert id="insertItem">
+
+    <insert id="insertItem" parameterType="TodoItem" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into todo (text, isCompleted)
         values (#{text}, #{isCompleted})
     </insert>
