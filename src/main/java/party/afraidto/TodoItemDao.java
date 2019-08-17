@@ -1,9 +1,12 @@
 package party.afraidto;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import party.afraidto.domain.TodoItem;
+
+/*
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class TodoItemDao {
@@ -25,4 +28,26 @@ public class TodoItemDao {
     public List<TodoItem> getItems() {
         return mapper.getItems();
     }
+}
+*/
+
+@Component
+public class TodoItemDao {
+
+  private final SqlSession sqlSession;
+
+  public TodoItemDao(SqlSession sqlSession) {
+    this.sqlSession = sqlSession;
+  }
+
+  public TodoItem getItemById(long id) {
+    return this.sqlSession.selectOne("getItemById", id);
+  }
+
+  /*
+  public List<TodoItem> getItems() {
+    return this.sqlSession.selectList("getItems");
+  }
+  */
+
 }

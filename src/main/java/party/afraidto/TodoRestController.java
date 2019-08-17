@@ -16,17 +16,21 @@ public class TodoRestController {
     TodoItemDao dao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<TodoItem> getAllItems() {
-        return dao.getItems();
+    public String getAllItems() {
+        return "TODO";
+        //return dao.getItems();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-    public TodoItem getItem(@PathVariable int id) {
-        return dao.getItem(id);
+    public TodoItem getItemById(@PathVariable int id) {
+        System.out.println("handling /{id}, id = " + id);
+        return dao.getItemById(id);
     }
 
+    /*
     @RequestMapping(method = RequestMethod.POST)
     public int postItem(@RequestBody TodoItem item) {
         return dao.insertItem(item);
     }
+    */
 }
