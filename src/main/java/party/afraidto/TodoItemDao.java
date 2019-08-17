@@ -40,12 +40,16 @@ public class TodoItemDao {
     this.sqlSession = sqlSession;
   }
 
+  public List<TodoItem> getItems() {
+    return this.sqlSession.selectList("getItems");
+  }
+
   public TodoItem getItemById(long id) {
     return this.sqlSession.selectOne("getItemById", id);
   }
 
-  public List<TodoItem> getItems() {
-    return this.sqlSession.selectList("getItems");
+  public void insertItem(TodoItem item) {
+      this.sqlSession.insert("insertItem", item);
   }
 
 }

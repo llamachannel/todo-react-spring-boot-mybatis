@@ -26,10 +26,8 @@ public class TodoRestController {
         return dao.getItemById(id);
     }
 
-    /*
     @RequestMapping(method = RequestMethod.POST)
-    public int postItem(@RequestBody TodoItem item) {
-        return dao.insertItem(item);
+    public void postItem(@RequestBody TodoItem item) {
+        dao.insertItem(item);
     }
-    */
 }
