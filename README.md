@@ -21,14 +21,18 @@ TODO:
 │   │   │   └── party
 │   │   │       └── afraidto
 │   │   │           ├── App.java
+│   │   │           ├── domain
+│   │   │           │   └── TodoItem.java
 │   │   │           ├── TodoItemDao.java
-│   │   │           ├── TodoItem.java
-│   │   │           ├── TodoItemMapper.java
 │   │   │           └── TodoRestController.java
 │   │   ├── js
 │   │   │   └── app.js
 │   │   └── resources
 │   │       ├── application.properties
+│   │       ├── mybatis-config.xml
+│   │       ├── party
+│   │       │   └── afraidto
+│   │       │       └── TodoItemMapper.xml
 │   │       └── templates
 │   │           └── index.html
 └── webpack.config.js
