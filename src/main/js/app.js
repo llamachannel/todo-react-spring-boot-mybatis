@@ -10,7 +10,11 @@ class App extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: [
+        { "id": 1, "text": "a", isCompleted: false},
+        { "id": 2, "text": "bee", isCompleted: false},
+        { "id": 3, "text": "sea", isCompleted: false}
+      ]
     };
   }
 
@@ -51,8 +55,8 @@ class App extends React.Component {
 
 class TodoList extends React.Component {
   render() {
-    const items = this.props.items.map((item, i) =>
-      <TodoItem key={item.item.id} item={item.item}/>
+    const items = this.props.items.map(item =>
+      <TodoItem key={item.id} item={item}/>
     );
     return (
       <div>
@@ -67,7 +71,7 @@ class TodoList extends React.Component {
 class TodoItem extends React.Component {
   render() {
     return (
-      <li>{this.props.text}</li>
+      <li>{this.props.item.id} -- {this.props.item.text}</li>
     )
   }
 }
