@@ -1,7 +1,7 @@
 package party.afraidto;
 
 public class TodoItem {
-    private Integer id;
+    private int id;
     private String text;
     private boolean isCompleted;
 
@@ -12,17 +12,17 @@ public class TodoItem {
         this.isCompleted = isCompleted;
     }
 
-    public TodoItem(Integer id, String text, boolean isCompleted) {
+    public TodoItem(int id, String text, boolean isCompleted) {
         this.id = id;
         this.text = text;
         this.isCompleted = isCompleted;
     }
 
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
