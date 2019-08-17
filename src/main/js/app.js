@@ -18,7 +18,6 @@ class App extends React.Component {
     };
   }
 
-  /*
   componentDidMount() {
     fetch("/api/todo")
       .then(res => res.json())
@@ -26,7 +25,7 @@ class App extends React.Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result.items
+            items: result,
           });
         },
         // Note: it's important to handle errors here
@@ -40,7 +39,6 @@ class App extends React.Component {
         }
       )
   }
-  */
 
   render() {
     return (
@@ -71,7 +69,7 @@ class TodoList extends React.Component {
 class TodoItem extends React.Component {
   render() {
     return (
-      <li>{this.props.item.id} -- {this.props.item.text}</li>
+      <li>{this.props.item.id} -- {this.props.item.text} -- {this.props.item.isCompleted ? "is completed!" : "not completed"}</li>
     )
   }
 }
