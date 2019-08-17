@@ -52,9 +52,18 @@ class App extends React.Component {
   }
 
   handleAddClick() {
-    // TODO: just display textbar text
-    // TODO: create new TodoItem with textbar text as thing todo, set Iscompleted =false
+    // TODO: POST new item to rest API, get new id back?
+    const newId = 1;
     alert("you clicked add text, and textbar = '" + this.state.newItemText + "'");
+    const newItem = {
+      id: newId,
+      text: this.state.newItemText,
+      isCompleted: false
+    };
+    this.setState(state => ({
+      newItemText: '',
+      items: this.state.items.concat(newItem)
+    }));
   }
 
   render() {
