@@ -44,10 +44,8 @@ public class TodoItemDao {
     return this.sqlSession.selectOne("getItemById", id);
   }
 
-  /*
   public List<TodoItem> getItems() {
     return this.sqlSession.selectList("getItems");
   }
-  */
 
 }

@@ -16,9 +16,8 @@ public class TodoRestController {
     TodoItemDao dao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getAllItems() {
-        return "TODO";
-        //return dao.getItems();
+    public List<TodoItem> getAllItems() {
+        return dao.getItems();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
