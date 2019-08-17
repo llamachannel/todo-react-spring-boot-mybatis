@@ -1,4 +1,4 @@
-package party.afraidto;
+package party.afraidto.domain;
 
 public class TodoItem {
     private int id;

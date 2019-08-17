@@ -3,6 +3,7 @@ package party.afraidto;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import party.afraidto.domain.TodoItem;
 
 @Component
 public class TodoItemDao {
