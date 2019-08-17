@@ -56,9 +56,7 @@ class App extends React.Component {
       text: this.state.newItemText,
       isCompleted: false
     };
-    // TODO: POST new item to rest API, get new id back?
-    console.log("init newItem = ");
-    console.log(newItem);
+
     fetch('/api/todo', {
       method: 'POST',
       headers: {
@@ -66,20 +64,17 @@ class App extends React.Component {
       },
       body: JSON.stringify(newItem),
     })
-    .then(function(res) {
-      console.log(res);
-      console.log("trying to PRINT JSON!!!!!!!!!!!!!!!");
-      return res.text();
-    })
-    .then(function(newId) {
-      console.log("then2, newItem = ");
-      console.log(newId);
-      newItem.id = newId;
-      this.setState(state => ({
-        newItemText: '',
-        items: this.state.items.concat(newItem)
-      }));
-    });
+    .then(res => res.text())
+    .then(
+      (newId) => {
+        newItem.id = parseInt(newId);
+        //console.log("init newItem = ");
+        //console.log(newItem);
+        this.setState(state => ({
+          newItemText: '',
+          items: this.state.items.concat(newItem)
+        }));
+      });
   }
 
   render() {
