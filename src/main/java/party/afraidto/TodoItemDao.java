@@ -12,7 +12,7 @@ public class TodoItemDao {
     public int insertItem(TodoItem item) {
         System.out.println("insertItem -- about to call mapper");
         TodoItem newItem = mapper.insertItem(item);
-        System.out.println("insertItem, newItem = ");
+        System.out.println("insertItem, after mapper, newItem = ");
         System.out.println(newItem);
         return newItem.getId();
     }
