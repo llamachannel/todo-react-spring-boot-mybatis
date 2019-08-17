@@ -42,11 +42,16 @@ class App extends React.Component {
       )
   }
 
+  handleAddClick() {
+    alert("you clicked add");
+  }
+
   render() {
     return (
       <div>
         <h1>todo</h1>
         <input type="text"/>
+        <button onClick={this.handleAddClick}>add</button>
         <TodoList items={this.state.items}/>
       </div>
     )
