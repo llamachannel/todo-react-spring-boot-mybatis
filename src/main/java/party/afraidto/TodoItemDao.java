@@ -9,8 +9,12 @@ public class TodoItemDao {
     @Autowired
     TodoItemMapper mapper;
 
-    public boolean insertItem(TodoItem item) {
-        return mapper.insertItem(item) > 0;
+    public int insertItem(TodoItem item) {
+        System.out.println("insertItem -- about to call mapper");
+        TodoItem newItem = mapper.insertItem(item);
+        System.out.println("insertItem, newItem = ");
+        System.out.println(newItem);
+        return newItem.getId();
     }
 
     public TodoItem getItem(int id) {

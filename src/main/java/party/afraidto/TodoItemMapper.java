@@ -5,16 +5,17 @@ import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface TodoItemMapper {
-    @Insert("insert into todo (id, text, isCompleted) values (null, #{text}, #{isCompleted})")
-    @Options(useGeneratedKeys=true, keyProperty="id")
-    public int insertItem(TodoItem todo);
+
+    @Insert("insert into todo (text, isCompleted) values (#{text}, #{isCompleted})")
+    @SelectKey(statement="select last_insert_id()", before=false, keyProperty="id", resultType=int.class)
+    public TodoItem insertItem(TodoItem todo);
 
     @Select("SELECT id, text, isCompleted FROM todo")
     List<TodoItem> getItems();
 
     @Select("SELECT id, text, isCompleted FROM todo WHERE id = #{id}")
     @Results(value = {
-      @Result(property = "id", column = "id"),
+      @Result(property="id", column = "id"),
       @Result(property="text", column = "text"),
       @Result(property="isCompleted", column = "isCompleted")
     })
