@@ -27,15 +27,17 @@ class App extends React.Component {
       .then(
         (itemList) => {
           let itemMap = {};
+          let itemIdList = []
           itemList.forEach(function(item) {
             itemMap[item.id] = item;
+            itemIdList.push(item.id);
           });
           console.log("itemMap = ");
           console.log(itemMap);
           this.setState({
             isLoaded: true,
             itemsMap: itemMap,
-            itemsList: itemList
+            itemsList: itemIdList
           });
         },
         // Note: it's important to handle errors here
@@ -79,15 +81,14 @@ class App extends React.Component {
           newItemText: '',
           // TODO: itemsMap with object assign?
           itemsMap: Object.assign({}, this.state.itemsMap, addedBinding),
-          itemsList: this.state.itemsList.concat(newItem)
+          itemsList: this.state.itemsList.concat(newId)
         }));
       });
   }
 
 
   handleToggleItem(id) {
-    const itemIsCompleted = this.state.itemsMap[id].isCompleted;
-    const subPath = itemIsCompleted ? 'complete' : 'uncomplete';
+    const subPath = this.state.itemsMap[id].isCompleted ? 'uncomplete' : 'complete';
 
     console.log("hTI, itemsMap = ");
     console.log(this.state.itemsMap);
@@ -96,11 +97,17 @@ class App extends React.Component {
       method: 'POST',
       body: '',
     })
-    .then(res => res.text())
+    .then(res => res.json())
     .then(
       (newToggleState) => {
         console.log("handleToggleItem, newToggleState = ");
         console.log(newToggleState);
+        let addedBinding = {};
+        const newItem = Object.assign({}, this.state.itemsMap[id], {isCompleted: newToggleState});
+        addedBinding[id] = newItem;
+        this.setState(state => ({
+          itemsMap: Object.assign({}, this.state.itemsMap, addedBinding)
+        }));
     });
 
   }
@@ -113,7 +120,10 @@ class App extends React.Component {
           handleAddClick={this.handleAddClick}
           newItemText={this.state.newItemText}
           handleNewItemTextChange={this.handleNewItemTextChange}/>
-        <TodoList items={this.state.itemsList}/>
+        <TodoList
+          itemsMap={this.state.itemsMap}
+          itemsList={this.state.itemsList}
+          handleToggleItem={this.handleToggleItem}/>
       </div>
     )
   }
@@ -132,8 +142,10 @@ class NewItemForm extends React.Component {
 
 class TodoList extends React.Component {
   render() {
-    const items = this.props.items.map(item =>
-      <TodoItem key={item.id} item={item}/>
+    const items = this.props.itemsList.map(id =>
+      <TodoItem
+        key={id} item={this.props.itemsMap[id]}
+        handleChange={() => this.props.handleToggleItem(id)}/>
     );
     return (
       <div id="todoList">
@@ -149,8 +161,8 @@ class TodoItem extends React.Component {
   render() {
     return (
       <li>
-        <input type="checkbox"/>
-        <label>{this.props.item.id} -- {this.props.item.text} -- {this.props.item.isCompleted ? "is completed!" : "not completed"}</label>
+        <input type="checkbox" onChange={this.props.handleChange} checked={this.props.item.isCompleted}/>
+        <label>{this.props.item.id} -- {this.props.item.text}</label>
       </li>
     )
   }
