@@ -21,4 +21,8 @@
     <update id="uncompleteItem">
         update todo set isCompleted=false where id = #{id}
     </update>
+
+    <delete id="deleteItemById">
+        delete from todo where id = #{id}
+    </delete>
 </mapper>

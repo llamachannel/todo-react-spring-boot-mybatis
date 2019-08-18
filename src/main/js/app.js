@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props);
     this.handleNewItemTextChange = this.handleNewItemTextChange.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleToggleItem = this.handleToggleItem.bind(this);
 
     this.state = {
@@ -50,10 +51,6 @@ class App extends React.Component {
       )
   }
 
-  handleNewItemTextChange(ev) {
-    this.setState({newItemText: ev.target.value});
-  }
-
   handleAddClick() {
     let newItem = {
       text: this.state.newItemText,
@@ -73,19 +70,41 @@ class App extends React.Component {
         newItem.id = parseInt(newId);
         let addedBinding = {};
         addedBinding[newId] = newItem;
+
         this.setState(state => ({
           newItemText: '',
-          // TODO: itemsMap with object assign?
           itemsMap: Object.assign({}, this.state.itemsMap, addedBinding),
           itemsList: this.state.itemsList.concat(newId)
         }));
       });
   }
 
+  handleDeleteClick(id) {
+    // DELETE to rest api, then delete from local state
+    fetch('/api/todo/'+id, {
+      method: 'DELETE',
+      body: ''
+    })
+    .then(res => res.json())
+    .then(
+      (wasDeleted) => {
+        // TODO: wasDeleted is true or false based on whether delete did something
+        let newMap = Object.assign({}, this.state.itemsMap);
+        delete newMap[id];
+
+        this.setState(state => ({
+          itemsMap: newMap,
+          itemsList: this.state.itemsList.filter(theId => theId !== id)
+        }));
+    });
+  }
+
+  handleNewItemTextChange(ev) {
+    this.setState({newItemText: ev.target.value});
+  }
 
   handleToggleItem(id) {
     const subPath = this.state.itemsMap[id].isCompleted ? 'uncomplete' : 'complete';
-
 
     fetch('/api/todo/'+id+'/'+subPath, {
       method: 'POST',
@@ -97,6 +116,7 @@ class App extends React.Component {
         let addedBinding = {};
         const newItem = Object.assign({}, this.state.itemsMap[id], {isCompleted: newToggleState});
         addedBinding[id] = newItem;
+
         this.setState(state => ({
           itemsMap: Object.assign({}, this.state.itemsMap, addedBinding)
         }));
@@ -115,6 +135,7 @@ class App extends React.Component {
         <TodoList
           itemsMap={this.state.itemsMap}
           itemsList={this.state.itemsList}
+          handleDeleteClick={this.handleDeleteClick}
           handleToggleItem={this.handleToggleItem}/>
       </div>
     )
@@ -137,7 +158,8 @@ class TodoList extends React.Component {
     const items = this.props.itemsList.map(id =>
       <TodoItem
         key={id} item={this.props.itemsMap[id]}
-        handleChange={() => this.props.handleToggleItem(id)}/>
+        handleChange={() => this.props.handleToggleItem(id)}
+        handleClick={() => this.props.handleDeleteClick(id)}/>
     );
     return (
       <div id="todoList">
@@ -155,7 +177,7 @@ class TodoItem extends React.Component {
       <li className={this.props.item.isCompleted ? "completed" : ""}>
         <input type="checkbox" onChange={this.props.handleChange} checked={this.props.item.isCompleted}/>
         <label>{this.props.item.text}</label>
-        <button className="deleteButton" onClick={() => alert("clicked delete botton")}>✖</button>
+        <button className="deleteButton" onClick={this.props.handleClick}>✖</button>
       </li>
     )
   }

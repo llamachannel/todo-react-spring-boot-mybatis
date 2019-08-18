@@ -22,6 +22,10 @@ public class TodoItemDao {
     return this.sqlSession.selectOne("getItemById", id);
   }
 
+  public boolean deleteItemById(long id) {
+    return this.sqlSession.delete("deleteItemById", id) > 0;
+  }
+
   public long insertItem(TodoItem item) {
       this.sqlSession.insert("insertItem", item);
       return item.getId();

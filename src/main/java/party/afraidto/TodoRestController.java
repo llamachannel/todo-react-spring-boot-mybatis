@@ -30,6 +30,11 @@ public class TodoRestController {
         return dao.getItemById(id);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    public boolean deleteItemById(@PathVariable int id) {
+        return dao.deleteItemById(id);
+    }
+
     @RequestMapping(method = RequestMethod.POST, path = "/{id}/complete")
     public boolean postComplete(@PathVariable int id) {
         return dao.completeItem(id);
