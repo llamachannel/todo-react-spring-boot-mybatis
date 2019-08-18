@@ -1,5 +1,7 @@
 # Todo app built in spring boot + react 
 
+## Overview
+
 WIP
 
  - Rest api works, talks to MySQL database
@@ -9,6 +11,9 @@ WIP
 TODO:
  - add option for toggling display of completed items
  - edit todo items
+
+
+### File structure
 
 ```
 ├── package.json
@@ -36,4 +41,11 @@ TODO:
 │   │       ├── templates
 │   │       │   └── index.html
 └── webpack.config.js
+```
+
+## Usage
+
+```
+mvn clean compile
+mvn spring-boot:run
 ```
