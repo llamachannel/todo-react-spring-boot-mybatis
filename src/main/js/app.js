@@ -15,11 +15,8 @@ class App extends React.Component {
       isLoaded: false,
       // newItemText makes NewItemForm a "controlled component"
       newItemText: '',
-      items: [
-        { id: 1, text: "a", isCompleted: false},
-        { id: 2, text: "bee", isCompleted: false},
-        { id: 3, text: "sea", isCompleted: false}
-      ]
+      itemsMap: { },
+      itemsList: [],
     };
   }
 
@@ -27,12 +24,17 @@ class App extends React.Component {
     fetch("/api/todo")
       .then(res => res.json())
       .then(
-        (result) => {
-          console.log("cDM, result = ");
-          console.log(result);
+        (itemList) => {
+          let itemMap = {};
+          itemList.forEach(function(item) {
+            itemMap[item.id] = item;
+          });
+          console.log("itemMap = ");
+          console.log(itemMap);
           this.setState({
             isLoaded: true,
-            items: result,
+            itemsMap: itemMap,
+            itemsList: itemList
           });
         },
         // Note: it's important to handle errors here
@@ -72,7 +74,7 @@ class App extends React.Component {
         //console.log(newItem);
         this.setState(state => ({
           newItemText: '',
-          items: this.state.items.concat(newItem)
+          itemsList: this.state.itemsList.concat(newItem)
         }));
       });
   }
@@ -85,7 +87,7 @@ class App extends React.Component {
           handleAddClick={this.handleAddClick}
           newItemText={this.state.newItemText}
           handleNewItemTextChange={this.handleNewItemTextChange}/>
-        <TodoList items={this.state.items}/>
+        <TodoList items={this.state.itemsList}/>
       </div>
     )
   }
