@@ -79,7 +79,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="app">
         <h1>todo</h1>
         <NewItemForm
           handleAddClick={this.handleAddClick}
@@ -108,8 +108,8 @@ class TodoList extends React.Component {
       <TodoItem key={item.id} item={item}/>
     );
     return (
-      <div>
-        <ul id="item-list">
+      <div id="todoList">
+        <ul>
           {items}
         </ul>
       </div>
