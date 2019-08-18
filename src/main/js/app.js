@@ -80,7 +80,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <h1>todo</h1>
+        <h1>todoooo</h1>
         <NewItemForm
           handleAddClick={this.handleAddClick}
           newItemText={this.state.newItemText}
@@ -96,7 +96,7 @@ class NewItemForm extends React.Component {
     return (
       <div id="newItemForm">
         <input type="text" value={this.props.newItemText} onChange={this.props.handleNewItemTextChange}/>
-        <button onClick={() => this.props.handleAddClick()}>add</button>
+        <button onClick={() => this.props.handleAddClick()}>add item</button>
       </div>
     );
   }
@@ -120,7 +120,10 @@ class TodoList extends React.Component {
 class TodoItem extends React.Component {
   render() {
     return (
-      <li>{this.props.item.id} -- {this.props.item.text} -- {this.props.item.isCompleted ? "is completed!" : "not completed"}</li>
+      <li>
+        <input type="checkbox"/>
+        <label>{this.props.item.id} -- {this.props.item.text} -- {this.props.item.isCompleted ? "is completed!" : "not completed"}</label>
+      </li>
     )
   }
 }

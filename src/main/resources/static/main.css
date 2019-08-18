@@ -1,13 +1,35 @@
+body {
+  background-color: #aa3333;
+}
+
 div#app {
-  border: 3px solid pink;
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
+  padding: 0.7em;
+  background-color: #e6e6e6;
 }
 
 div#newItemForm {
-  border: 1px solid blue;
+  padding-bottom: 0.7em;
 }
 
-div#todoList {
-  border: 2px dotted green;
+#newItemForm input {
+  width: 75%;
+  margin-right: 15px;
+}
+
+
+#todoList > ul {
+  margin: 0;
+  padding: 0;
+}
+
+#todoList > ul > li {
+  padding: 0.7em;
+  border-top: 1px solid #333;
+  list-style-type: none;
+}
+
+#todoList li input {
+  margin-right: 0.4em;
 }
