@@ -155,6 +155,7 @@ class TodoItem extends React.Component {
       <li className={this.props.item.isCompleted ? "completed" : ""}>
         <input type="checkbox" onChange={this.props.handleChange} checked={this.props.item.isCompleted}/>
         <label>{this.props.item.text}</label>
+        <button className="deleteButton" onClick={() => alert("clicked delete botton")}>✖</button>
       </li>
     )
   }

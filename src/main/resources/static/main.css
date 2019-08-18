@@ -37,3 +37,7 @@ div#newItemForm {
 .completed {
   text-decoration: line-through;
 }
+
+.deleteButton {
+  float: right;
+}
