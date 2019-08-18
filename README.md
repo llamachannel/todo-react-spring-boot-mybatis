@@ -2,9 +2,9 @@
 
 WIP
 
- - Rest api is database-backed.
- - react displays results of call to rest API
- - can add, remove items, and toggled completenedd
+ - Rest api works, talks to MySQL database
+ - react hits the rest API
+ - can add, remove items, and toggled completedness
 
 TODO:
  - add option for toggling display of completed items
