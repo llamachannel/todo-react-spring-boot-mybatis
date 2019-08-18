@@ -38,8 +38,8 @@ TODO:
 │   │       │       └── TodoItemMapper.xml
 │   │       ├── static
 │   │       │   └── main.css
-│   │       ├── templates
-│   │       │   └── index.html
+│   │       └─ templates
+│   │           └── index.html
 └── webpack.config.js
 ```
 
