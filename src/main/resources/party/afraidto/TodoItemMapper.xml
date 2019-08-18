@@ -18,4 +18,7 @@
     <update id="completeItem">
         update todo set isCompleted=true where id = #{id}
     </update>
+    <update id="uncompleteItem">
+        update todo set isCompleted=false where id = #{id}
+    </update>
 </mapper>

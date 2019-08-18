@@ -27,12 +27,16 @@ public class TodoRestController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public TodoItem getItemById(@PathVariable int id) {
-        System.out.println("handling /{id}, id = " + id);
         return dao.getItemById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/{id}/complete")
     public boolean postComplete(@PathVariable int id) {
         return dao.completeItem(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/{id}/uncomplete")
+    public boolean postUncomplete(@PathVariable int id) {
+        return dao.uncompleteItem(id);
     }
 }

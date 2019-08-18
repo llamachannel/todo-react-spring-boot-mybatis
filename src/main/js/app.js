@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props);
     this.handleNewItemTextChange = this.handleNewItemTextChange.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleToggleItem = this.handleToggleItem.bind(this);
 
     this.state = {
       error: null,

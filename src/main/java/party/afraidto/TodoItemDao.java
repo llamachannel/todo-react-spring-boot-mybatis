@@ -58,4 +58,9 @@ public class TodoItemDao {
       return true;
   }
 
+  public boolean uncompleteItem(long id) {
+      this.sqlSession.update("uncompleteItem", id);
+      return false;
+  }
+
 }
