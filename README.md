@@ -33,7 +33,9 @@ TODO:
 │   │       ├── party
 │   │       │   └── afraidto
 │   │       │       └── TodoItemMapper.xml
-│   │       └── templates
-│   │           └── index.html
+│   │       ├── static
+│   │       │   └── main.css
+│   │       ├── templates
+│   │       │   └── index.html
 └── webpack.config.js
 ```
