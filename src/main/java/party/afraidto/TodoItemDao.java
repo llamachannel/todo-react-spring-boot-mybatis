@@ -53,4 +53,9 @@ public class TodoItemDao {
       return item.getId();
   }
 
+  public boolean completeItem(long id) {
+      this.sqlSession.update("completeItem", id);
+      return true;
+  }
+
 }

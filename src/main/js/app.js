@@ -72,11 +72,36 @@ class App extends React.Component {
         newItem.id = parseInt(newId);
         //console.log("init newItem = ");
         //console.log(newItem);
+        let addedBinding = {};
+        addedBinding[newId] = newItem;
         this.setState(state => ({
           newItemText: '',
+          // TODO: itemsMap with object assign?
+          itemsMap: Object.assign({}, this.state.itemsMap, addedBinding),
           itemsList: this.state.itemsList.concat(newItem)
         }));
       });
+  }
+
+
+  handleToggleItem(id) {
+    const itemIsCompleted = this.state.itemsMap[id].isCompleted;
+    const subPath = itemIsCompleted ? 'complete' : 'uncomplete';
+
+    console.log("hTI, itemsMap = ");
+    console.log(this.state.itemsMap);
+
+    fetch('/api/todo/'+id+'/'+subPath, {
+      method: 'POST',
+      body: '',
+    })
+    .then(res => res.text())
+    .then(
+      (newToggleState) => {
+        console.log("handleToggleItem, newToggleState = ");
+        console.log(newToggleState);
+    });
+
   }
 
   render() {

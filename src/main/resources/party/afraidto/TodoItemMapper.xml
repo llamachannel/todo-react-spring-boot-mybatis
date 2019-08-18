@@ -14,4 +14,8 @@
         insert into todo (text, isCompleted)
         values (#{text}, #{isCompleted})
     </insert>
+
+    <update id="completeItem">
+        update todo set isCompleted=true where id = #{id}
+    </update>
 </mapper>
