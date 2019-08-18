@@ -33,3 +33,7 @@ div#newItemForm {
 #todoList li input {
   margin-right: 0.4em;
 }
+
+.completed {
+  text-decoration: line-through;
+}

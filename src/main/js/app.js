@@ -152,9 +152,9 @@ class TodoList extends React.Component {
 class TodoItem extends React.Component {
   render() {
     return (
-      <li>
+      <li className={this.props.item.isCompleted ? "completed" : ""}>
         <input type="checkbox" onChange={this.props.handleChange} checked={this.props.item.isCompleted}/>
-        <label>{this.props.item.id} -- {this.props.item.text}</label>
+        <label>{this.props.item.text}</label>
       </li>
     )
   }
