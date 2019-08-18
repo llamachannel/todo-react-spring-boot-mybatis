@@ -43,9 +43,16 @@ TODO:
 └── webpack.config.js
 ```
 
-## Usage
+## Building and running
+
+To compile the Spring Boot REST API, run:
 
 ```
 mvn clean compile
+```
+
+To compile the React app (i.e. to run webpack on it) and then launch a local web server, run:
+
+```
 mvn spring-boot:run
 ```
