@@ -32,8 +32,6 @@ class App extends React.Component {
             itemMap[item.id] = item;
             itemIdList.push(item.id);
           });
-          console.log("itemMap = ");
-          console.log(itemMap);
           this.setState({
             isLoaded: true,
             itemsMap: itemMap,
@@ -73,8 +71,6 @@ class App extends React.Component {
     .then(
       (newId) => {
         newItem.id = parseInt(newId);
-        //console.log("init newItem = ");
-        //console.log(newItem);
         let addedBinding = {};
         addedBinding[newId] = newItem;
         this.setState(state => ({
@@ -90,8 +86,6 @@ class App extends React.Component {
   handleToggleItem(id) {
     const subPath = this.state.itemsMap[id].isCompleted ? 'uncomplete' : 'complete';
 
-    console.log("hTI, itemsMap = ");
-    console.log(this.state.itemsMap);
 
     fetch('/api/todo/'+id+'/'+subPath, {
       method: 'POST',
@@ -100,8 +94,6 @@ class App extends React.Component {
     .then(res => res.json())
     .then(
       (newToggleState) => {
-        console.log("handleToggleItem, newToggleState = ");
-        console.log(newToggleState);
         let addedBinding = {};
         const newItem = Object.assign({}, this.state.itemsMap[id], {isCompleted: newToggleState});
         addedBinding[id] = newItem;
