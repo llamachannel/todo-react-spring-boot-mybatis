@@ -4,13 +4,11 @@ WIP
 
  - Rest api is database-backed.
  - react displays results of call to rest API
+ - can add, remove items, and toggled completenedd
 
 TODO:
- - add new items
- - remove items
- - mark existing items as completed
- - hide completed items
  - add option for toggling display of completed items
+ - edit todo items
 
 ```
 ├── package.json
